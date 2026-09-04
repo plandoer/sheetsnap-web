@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join your Sheet Snap group</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: #f2f4f7;
+        font-family: -apple-system, Roboto, Helvetica, Arial, sans-serif;
+        color: #1f2937;
+        text-align: center;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+        color: #6b7280;
+        max-width: 320px;
+      }
+      a.button {
+        margin-top: 8px;
+        background: #4a8853;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Opening Sheet Snap&hellip;</h1>
+    <p id="message">
+      If nothing happens, the app may not be installed on this device yet.
+    </p>
+    <a class="button" id="open-app-link" href="#">Open in Sheet Snap</a>
+
+    <script>
+      // Android App Links intercept this page before it loads whenever the
+      // app is installed and link verification has succeeded, so reaching
+      // this script means we should fall back to the custom URL scheme.
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get("token") || "";
+      var appUrl = "sheetsnap://join-group?token=" + encodeURIComponent(token);
+
+      document.getElementById("open-app-link").href = appUrl;
+      window.location.href = appUrl;
+    </script>
+  </body>
+</html>
