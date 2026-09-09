@@ -52,8 +52,13 @@
       // app is installed and link verification has succeeded, so reaching
       // this script means we should fall back to the custom URL scheme.
       var params = new URLSearchParams(window.location.search);
+      var name = params.get("name") || "";
       var token = params.get("token") || "";
-      var appUrl = "sheetsnap://join-group?token=" + encodeURIComponent(token);
+      var appUrl =
+        "sheetsnap://join-group?name=" +
+        encodeURIComponent(name) +
+        "&token=" +
+        encodeURIComponent(token);
 
       document.getElementById("open-app-link").href = appUrl;
       window.location.href = appUrl;
